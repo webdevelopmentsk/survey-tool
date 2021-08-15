@@ -104,6 +104,7 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   &__btn-next {
@@ -114,6 +115,12 @@ export default defineComponent({
     border:none;
     -webkit-box-shadow: 3px 0px 9px -3px #000000;
     box-shadow: 3px 0px 9px -3px #000000;
+
+    @media(max-width: 767px) {
+      width: 320px;
+      margin-left: 0;
+      box-shadow: none;
+    }
 
     &__icon {
     color: white;
@@ -132,6 +139,11 @@ export default defineComponent({
       display: flex;
       justify-content: space-between;
       width: 60%;
+
+      @media(max-width: 767px) {
+      width: 320px;
+      margin-left: 0;
+      }
     }
 
     &__image {

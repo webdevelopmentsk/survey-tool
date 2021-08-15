@@ -21,15 +21,24 @@
 #nav {
   padding: 30px;
   display: flex;
-  width: 23%;
+  width: 50%;
   justify-content: space-between;
+
+  @media(max-width: 767px) {
+     width: 60%;
+  }
+
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: grey;
     font-size: 2rem;
 
+    @media(max-width: 767px) {
+     font-size: 1.5rem;
+    }
+
     &.router-link-exact-active {
-      color: #42b983;
+      color: blue;
     }
   }
 }

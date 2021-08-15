@@ -121,6 +121,7 @@ export default defineComponent({
   &__container {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
   }
@@ -134,9 +135,15 @@ export default defineComponent({
     -webkit-box-shadow: 3px 0px 9px -3px #000000;
     box-shadow: 3px 0px 9px -3px #000000;
 
+    @media(max-width: 767px) {
+      width: 320px;
+      margin-left: 0;
+      box-shadow: none;
+    }
+
     &__icon {
-    color: white;
-    font-size: 1rem;
+      color: white;
+      font-size: 1rem;
     }
   }
 
@@ -145,10 +152,19 @@ export default defineComponent({
     margin-top: 2rem;
     align-items: center;
 
+
+    @media(max-width: 767px) {
+      width: 320px;
+      margin-left: 0;
+    }
+
     &__text {
       margin: 0 1rem;
       color: white;
       font-size: 1rem;
+        @media(max-width: 767px) {
+          font-size: 0.7rem;
+        }
     }
 
     &__item {
@@ -160,6 +176,11 @@ export default defineComponent({
       color: white;
       font-size: 2rem;
       margin-right: 0.5rem;
+
+      @media(max-width: 767px) {
+        font-size: 1rem;
+        margin-right: 0.2rem;
+      }
 
       &--active {
         color: pink;

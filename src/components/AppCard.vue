@@ -30,6 +30,10 @@ export default defineComponent({
   align-items: center;
   padding-bottom: 2rem;
 
+  @media(max-width: 767px) {
+    width: 320px;
+  }
+
   &__title {
     width: 100%;
     padding: 0.5rem 0;
@@ -43,7 +47,11 @@ export default defineComponent({
 
     &__container {
       width: 500px;
-      margin-top: 2rem
+      margin-top: 2rem;
+
+      @media(max-width: 767px) {
+        width: 320px;
+      }
     }
   }
 }

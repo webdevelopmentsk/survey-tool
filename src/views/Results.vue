@@ -6,7 +6,7 @@
       <div class="result__most-popular__img__container">
         <img class="result__most-popular__img" :src="allData[0].src" :alt="allData[0].alt">
       </div>
-      <div class="result__most-popular__score">{{ `Fit/Like: ${allData[0].percent.toFixed(2)}` }}</div>
+      <div class="result__most-popular__score">{{ `Fit/Like: ${allData[0].percent.toFixed(2)}%` }}</div>
     </div>
 
     <div class="result__all">
@@ -56,6 +56,10 @@ export default defineComponent({
     &__header {
         font-size: 3rem;
         margin: 2rem 0;
+
+      @media(max-width: 767px) {
+        font-size: 1.5rem;
+      }
     }
 
     &__most-popular {
@@ -66,10 +70,17 @@ export default defineComponent({
             width: 200px;
             padding: 1rem 0;
             background-color: black;
+
+            @media(max-width: 767px) {
+               width: 100%;
+            }
         }
 
         &__title {
             font-size: 2rem;
+            @media(max-width: 767px) {
+              font-size: 1.5rem;
+            }
         }
 
         &__img {
@@ -105,6 +116,11 @@ export default defineComponent({
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-around;
+
+                @media(max-width: 767px) {
+                justify-content: center;
+                width: 100%;
+                }
             }
         }
 
