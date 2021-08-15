@@ -12,18 +12,11 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "AppCardD1",
+  name: "AppCard",
 
   props: {
     message: String,
-    quote: Object,
-    sentiments: Array
-  },
-
-  setup(props) {
-    console.log(props.sentiments)
-
-    return {}
+    quote: Object
   }
 });
 </script>
@@ -36,6 +29,10 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   padding-bottom: 2rem;
+
+  @media(max-width: 767px) {
+    width: 320px;
+  }
 
   &__title {
     width: 100%;
@@ -50,7 +47,11 @@ export default defineComponent({
 
     &__container {
       width: 500px;
-      margin-top: 2rem
+      margin-top: 2rem;
+
+      @media(max-width: 767px) {
+        width: 320px;
+      }
     }
   }
 }

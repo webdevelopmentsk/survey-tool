@@ -4,8 +4,8 @@ const store = createStore({
   state: {
     quotes: [],
     sentiments: [],
-    surveyOverallD1: [],
-    surveyUserD1: [],
+    surveyOverall: [],
+    surveyUser: [],
     totalVoter: 200,
   },
 
@@ -22,11 +22,16 @@ const store = createStore({
       return state.totalVoter
     },
 
-    getSurveyOverallD1(state) {
-      return state.surveyOverallD1.sort((a,b) => b.score - a.score)
+    getSurveyOverall(state) {
+      let allData = state.surveyOverall.sort((a,b) => b.score - a.score)
+      allData.map((item) => {
+        const percentLike = item.score *100 /state.totalVoter
+        item.percent = percentLike
+      })
+      return allData
     },
 
-    getSurveyUserD1(state) {
+    getSurveyUser(state) {
       return state.surveyUserD1
     }
   },
@@ -40,12 +45,12 @@ const store = createStore({
       state.sentiments = payload
     },
 
-    setSurveyUserD1 (state, payload) {
-      state.surveyUserD1 = payload
+    setSurveyUser (state, payload) {
+      state.surveyUser = payload
     },
 
-    setSurveyOverallD1 (state, payload) {
-      state.surveyOverallD1 = payload
+    setSurveyOverall (state, payload) {
+      state.surveyOverall = payload
     },
 
     setTotalVoter(state) {
@@ -64,20 +69,20 @@ const store = createStore({
       ]
 
       commit('setQuotes', quotes)
-      commit('setSurveyUserD1', quotes)
+      commit('setSurveyUser', quotes)
     },
 
-    fetchsurveyOverallD1({ commit, }) {
+    fetchsurveyOverall({ commit, }) {
       const quotes = [
-        {id: 0, src: '/img/quotes/img_statement_1.png', alt:"quote1", score: 20},
-        {id: 1, src: '/img/quotes/img_statement_2.png', alt:"quote2", score: 15},
-        {id: 2, src: '/img/quotes/img_statement_3.png', alt:"quote3", score: 4},
-        {id: 3, src: '/img/quotes/img_statement_4.png', alt:"quote4", score: 99},
-        {id: 4, src: '/img/quotes/img_statement_5.png', alt:"quote5", score: 12},
-        {id: 5, src: '/img/quotes/img_statement_6.png', alt:"quote6", score: 18},
+        {id: 0, src: '/img/quotes/img_statement_1.png', alt:"quote1", score: 100},
+        {id: 1, src: '/img/quotes/img_statement_2.png', alt:"quote2", score: 190},
+        {id: 2, src: '/img/quotes/img_statement_3.png', alt:"quote3", score: -20},
+        {id: 3, src: '/img/quotes/img_statement_4.png', alt:"quote4", score: -10},
+        {id: 4, src: '/img/quotes/img_statement_5.png', alt:"quote5", score: 120},
+        {id: 5, src: '/img/quotes/img_statement_6.png', alt:"quote6", score: 150},
       ]
 
-      commit('setSurveyOverallD1', quotes)
+      commit('setSurveyOverall', quotes)
     },
 
     fetchSentiments ({ commit }){
@@ -90,16 +95,16 @@ const store = createStore({
     },
 
     handleUserSelectSentiment ({ commit, state }, payload) {
-      let userScores = state.surveyUserD1
+      let userScores = state.surveyUser
       userScores[payload.id].score = payload.sentiment.score
-      commit('setSurveyUserD1', userScores)
+      commit('setSurveyUser', userScores)
     },
 
     handleUserFinishSurvey ({ commit, state }) {
-      const allResult = state.surveyOverallD1
+      const allResult = state.surveyOverall
 
       allResult.map((quote) => {
-        state.surveyUserD1.map((userQuote) => {
+        state.surveyUser.map((userQuote) => {
           if(userQuote.id === quote.id) {
             quote.score = userQuote.score + quote.score
           }
@@ -107,7 +112,7 @@ const store = createStore({
       })
 
       commit('setTotalVoter')
-      commit('setSurveyOverallD1', allResult)
+      commit('setSurveyOverall', allResult)
     }
   },
   modules: {},

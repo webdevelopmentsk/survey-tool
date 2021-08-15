@@ -6,7 +6,7 @@
       <div class="result__most-popular__img__container">
         <img class="result__most-popular__img" :src="allData[0].src" :alt="allData[0].alt">
       </div>
-      <div class="result__most-popular__score">{{ `Score: ${allData[0].score}` }}</div>
+      <div class="result__most-popular__score">{{ `Fit/Like: ${allData[0].percent.toFixed(2)}%` }}</div>
     </div>
 
     <div class="result__all">
@@ -15,7 +15,10 @@
         <div v-for="item in allData" :key="item.id" class="result__all__item">
           <div class="result__all__img__container">
             <img class="result__all__img" :src="item.src" :alt="item.alt">
-            <div class="result__all__score">{{ `Score: ${item.score}` }}</div>
+            <div class="result__all__score">
+              {{ `${item.percent > 0 ? `Fit: ${item.percent.toFixed(2)}`
+                : `Does not like/does not fit: ${100 - Math.abs(item.percent.toFixed(2))}`}%` }}
+            </div>
           </div>
         </div>
       </div>
@@ -39,13 +42,6 @@ export default defineComponent({
       totalVoter: {
           type: Number
       }
-  },
-
-  setup(props) {
-    console.log('allData',props.allData)
-    console.log('userData',props.userData)
-
-    return { }
   }
 });
 </script>
@@ -60,6 +56,10 @@ export default defineComponent({
     &__header {
         font-size: 3rem;
         margin: 2rem 0;
+
+      @media(max-width: 767px) {
+        font-size: 1.5rem;
+      }
     }
 
     &__most-popular {
@@ -67,13 +67,20 @@ export default defineComponent({
         &__score {
             font-size: 1.5rem;
             color: white;
-            width: 150px;
+            width: 200px;
             padding: 1rem 0;
             background-color: black;
+
+            @media(max-width: 767px) {
+               width: 100%;
+            }
         }
 
         &__title {
             font-size: 2rem;
+            @media(max-width: 767px) {
+              font-size: 1.5rem;
+            }
         }
 
         &__img {
@@ -109,6 +116,11 @@ export default defineComponent({
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-around;
+
+                @media(max-width: 767px) {
+                justify-content: center;
+                width: 100%;
+                }
             }
         }
 
