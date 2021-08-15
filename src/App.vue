@@ -2,7 +2,6 @@
   <div id="nav">
     <router-link to="/">Design-1</router-link>
     <router-link to="/design-two">Design-2</router-link>
-    <router-link to="/design-three">Design-3</router-link>
   </div>
   <router-view />
 </template>
@@ -22,7 +21,7 @@
 #nav {
   padding: 30px;
   display: flex;
-  width: 50%;
+  width: 23%;
   justify-content: space-between;
   a {
     font-weight: bold;

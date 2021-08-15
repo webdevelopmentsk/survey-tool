@@ -6,7 +6,7 @@
       <div class="result__most-popular__img__container">
         <img class="result__most-popular__img" :src="allData[0].src" :alt="allData[0].alt">
       </div>
-      <div class="result__most-popular__score">{{ `Score: ${allData[0].percent.toFixed(2)}` }}</div>
+      <div class="result__most-popular__score">{{ `Fit/Like: ${allData[0].percent.toFixed(2)}` }}</div>
     </div>
 
     <div class="result__all">
@@ -16,8 +16,8 @@
           <div class="result__all__img__container">
             <img class="result__all__img" :src="item.src" :alt="item.alt">
             <div class="result__all__score">
-              {{ `${item.percent > 0 ? `Like: ${item.percent.toFixed(2)}`
-                : `Hate: ${100 - Math.abs(item.percent.toFixed(2))}`}%` }}
+              {{ `${item.percent > 0 ? `Fit: ${item.percent.toFixed(2)}`
+                : `Does not like/does not fit: ${100 - Math.abs(item.percent.toFixed(2))}`}%` }}
             </div>
           </div>
         </div>
@@ -42,13 +42,6 @@ export default defineComponent({
       totalVoter: {
           type: Number
       }
-  },
-
-  setup(props) {
-    console.log('allData',props.allData)
-    console.log('userData',props.userData)
-
-    return { }
   }
 });
 </script>
@@ -70,7 +63,7 @@ export default defineComponent({
         &__score {
             font-size: 1.5rem;
             color: white;
-            width: 150px;
+            width: 200px;
             padding: 1rem 0;
             background-color: black;
         }

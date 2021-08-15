@@ -5,7 +5,12 @@
         <div class="design-two__rating">
           <div class="design-two__rating__text">does not fit all</div>
           <button v-for="item in 5" :key="item" class="design-two__rating__item" @click="setQuoteScore(item)">
-            <fa icon="star" class="design-two__rating__icon" aria-hidden="true" />
+            <fa
+              icon="star"
+              class="design-two__rating__icon"
+              :value="item"
+              :class="currentQuoteScore && item <= currentQuoteScore && 'design-two__rating__icon--active'"
+            />
           </button>
           <div class="design-two__rating__text">fits very well</div>
         </div>
@@ -38,6 +43,8 @@ export default defineComponent({
 
     const currentQuoteId = ref(0)
 
+    const currentQuoteScore = ref(null)
+
     const message = ref('How do you feel about these quotes?')
 
     const userResult = computed(() => store.getters.getSurveyUser)
@@ -46,7 +53,10 @@ export default defineComponent({
 
     function setNextQuote () {
       if(currentQuoteId.value < quotes.value.length - 1) {
-        currentQuoteId.value = currentQuoteId.value + 1
+        setTimeout(function(){
+          currentQuoteId.value = currentQuoteId.value + 1
+          currentQuoteScore.value = null
+        }, 1000)
       } else {
         store.dispatch('handleUserFinishSurvey')
         displayResults.value = true
@@ -56,13 +66,21 @@ export default defineComponent({
     const getCurrentQuote = computed(() => quotes.value[currentQuoteId.value])
 
     function setQuoteScore(score) {
+      currentQuoteScore.value = score
+
+      let setScore = 0;
       switch (score) {
-        case 1:
+        case 1: setScore = -1; break;
+        case 2: setScore = -0.5; break;
+        case 3: setScore = 0; break;
+        case 4: setScore = 0.5; break;
+        case 5: setScore = 1; break;
       }
+
       const payload = {
         id:currentQuoteId.value,
         sentiment: {
-          score: score -1
+          score: setScore
         }
       }
       store.dispatch('handleUserSelectSentiment', payload)
@@ -87,7 +105,8 @@ export default defineComponent({
       userResult,
       allResult,
       getTotalVoter,
-      displayResults
+      displayResults,
+      currentQuoteScore
     }
   }
 
@@ -131,14 +150,20 @@ export default defineComponent({
       color: white;
       font-size: 1rem;
     }
+
     &__item {
       border: none;
       background-color: transparent;
     }
+
     &__icon {
       color: white;
       font-size: 2rem;
       margin-right: 0.5rem;
+
+      &--active {
+        color: pink;
+      }
     }
   }
 

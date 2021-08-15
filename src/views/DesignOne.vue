@@ -48,7 +48,9 @@ export default defineComponent({
 
     function setNextQuote () {
       if(currentQuoteId.value < quotes.value.length - 1) {
-        currentQuoteId.value = currentQuoteId.value + 1
+        setTimeout(function(){
+          currentQuoteId.value = currentQuoteId.value + 1
+        }, 500)
       } else {
         store.dispatch('handleUserFinishSurvey')
         displayResults.value = true

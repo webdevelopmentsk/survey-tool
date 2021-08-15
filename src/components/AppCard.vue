@@ -16,14 +16,7 @@ export default defineComponent({
 
   props: {
     message: String,
-    quote: Object,
-    sentiments: Array
-  },
-
-  setup(props) {
-    console.log(props.sentiments)
-
-    return {}
+    quote: Object
   }
 });
 </script>
