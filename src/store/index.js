@@ -98,7 +98,6 @@ const store = createStore({
     handleUserFinishSurvey ({ commit, state }) {
       const allResult = state.surveyOverallD1
 
-      console.log('allResult', allResult)
       allResult.map((quote) => {
         state.surveyUserD1.map((userQuote) => {
           if(userQuote.id === quote.id) {
@@ -106,6 +105,7 @@ const store = createStore({
           }
         })
       })
+
       commit('setTotalVoter')
       commit('setSurveyOverallD1', allResult)
     }
