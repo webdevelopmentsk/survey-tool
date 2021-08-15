@@ -1,7 +1,6 @@
 <template>
-  <div class="card">
-    {{ msg }}
-    <slot />
+  <div class="design-two">
+    Design 2
   </div>
 </template>
 
@@ -9,10 +8,8 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "AppCard",
+  name: "DesignTwo",
 
-  props: {
-    msg: String,
-  },
+  components: {},
 });
 </script>
