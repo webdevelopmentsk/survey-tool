@@ -13,11 +13,11 @@ export default defineComponent({
   components: {},
 
   setup() {
-    const userName = ref("Sawi");
+    const userName = ref("Sawi")
 
-    const getUsername = computed(() => `${userName.value} Kalakul Bloemendal`);
+    const getUsername = computed(() => `${userName.value} Kalakul Bloemendal`)
 
-    return { getUsername };
+    return { getUsername }
   },
 });
 </script>

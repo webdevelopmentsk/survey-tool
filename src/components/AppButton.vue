@@ -59,18 +59,18 @@ export default defineComponent({
 
   setup(props) {
     const buttonSize = computed(() => {
-      return `size-${props.size}`;
+      return `size-${props.size}`
     });
 
     const buttonRounded = computed(() => {
-      return `rounded-${props.rounded}`;
+      return `rounded-${props.rounded}`
     });
 
     const buttonTypes = computed(() => {
-      return types[props.type];
+      return types[props.type]
     });
 
-    return { buttonSize, buttonRounded, buttonTypes };
+    return { buttonSize, buttonRounded, buttonTypes }
   },
 });
 </script>
