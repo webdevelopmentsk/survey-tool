@@ -1,7 +1,7 @@
 <template>
   <div class="design-two">
     <div v-if="!displayResults" class="design-two__container">
-      <AppCard :message="message" :sentiments="sentiments" :quote="getCurrentQuote">
+      <AppCard :message="message" :quote="getCurrentQuote">
         <div class="design-two__rating">
           <div class="design-two__rating__text">does not fit all</div>
           <button v-for="item in 5" :key="item" class="design-two__rating__item" @click="setQuoteScore(item)">
@@ -35,7 +35,6 @@ export default defineComponent({
     const displayResults = ref(false)
 
     const quotes = computed(() => store.state.quotes)
-    const sentiments = computed(() => store.getters.getSentiments)
 
     const currentQuoteId = ref(0)
 
@@ -57,6 +56,9 @@ export default defineComponent({
     const getCurrentQuote = computed(() => quotes.value[currentQuoteId.value])
 
     function setQuoteScore(score) {
+      switch (score) {
+        case 1:
+      }
       const payload = {
         id:currentQuoteId.value,
         sentiment: {
@@ -79,7 +81,6 @@ export default defineComponent({
     return {
       currentQuoteId,
       message,
-      sentiments,
       setNextQuote,
       getCurrentQuote,
       setQuoteScore,
