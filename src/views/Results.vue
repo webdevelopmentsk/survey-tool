@@ -6,7 +6,7 @@
       <div class="result__most-popular__img__container">
         <img class="result__most-popular__img" :src="allData[0].src" :alt="allData[0].alt">
       </div>
-      <div class="result__most-popular__score">{{ `Score: ${allData[0].score}` }}</div>
+      <div class="result__most-popular__score">{{ `Score: ${allData[0].percent.toFixed(2)}` }}</div>
     </div>
 
     <div class="result__all">
@@ -15,7 +15,10 @@
         <div v-for="item in allData" :key="item.id" class="result__all__item">
           <div class="result__all__img__container">
             <img class="result__all__img" :src="item.src" :alt="item.alt">
-            <div class="result__all__score">{{ `Score: ${item.score}` }}</div>
+            <div class="result__all__score">
+              {{ `${item.percent > 0 ? `Like: ${item.percent.toFixed(2)}`
+                : `Hate: ${100 - Math.abs(item.percent.toFixed(2))}`}%` }}
+            </div>
           </div>
         </div>
       </div>

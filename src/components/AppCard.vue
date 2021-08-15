@@ -12,7 +12,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "AppCardD1",
+  name: "AppCard",
 
   props: {
     message: String,

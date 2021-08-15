@@ -1,7 +1,7 @@
 <template>
   <div class="design-one">
     <div v-if="!displayResults" class="design-one__container">
-      <AppCardD1 :message="message" :sentiments="sentiments" :quote="getCurrentQuote">
+      <AppCard :message="message" :sentiments="sentiments" :quote="getCurrentQuote">
         <div class="design-one__btn__container">
           <div v-for="item in sentiments" :key="item.label">
             <button class="design-one__btn" @click="setQuoteScore(item)">
@@ -10,7 +10,7 @@
             </button>
           </div>
         </div>
-      </AppCardD1>
+      </AppCard>
       <button class="design-one__btn-next" @click="setNextQuote">
         <fa icon="chevron-right" class="design-one__btn-next__icon" />
       </button>
@@ -42,8 +42,8 @@ export default defineComponent({
 
     const message = ref('How do you feel about these quotes?')
 
-    const userResult = computed(() => store.getters.getSurveyUserD1)
-    const allResult = computed(() => store.getters.getSurveyOverallD1)
+    const userResult = computed(() => store.getters.getSurveyUser)
+    const allResult = computed(() => store.getters.getSurveyOverall)
     const getTotalVoter = computed(() => store.getters.getTotalVoter)
 
     function setNextQuote () {
@@ -70,7 +70,7 @@ export default defineComponent({
     function fetchData() {
       store.dispatch('fetchQuotes')
       store.dispatch('fetchSentiments')
-      store.dispatch('fetchsurveyOverallD1')
+      store.dispatch('fetchsurveyOverall')
     }
 
     fetchData()
